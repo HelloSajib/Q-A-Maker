@@ -14,7 +14,7 @@ class ApiService {
           {
             "parts": [
               {
-                "text": "$text Generate short questions and answers or mcq type question from the text."
+                "text": "($text) Generate short questions and answers or mcq type question from the text."
                     " Just give me main text. don't need say me okay. "
                     "here are some short question etc. "
                     "Just give me main content and give me with numbering questions"

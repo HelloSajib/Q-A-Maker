@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:qna_maker/providers/qna_provider.dart';
 import 'package:qna_maker/screens/results_screen.dart';
 import '../services/api_service.dart';
 import 'history_screen.dart';
@@ -58,6 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
       // Parse Gemini text into Q&A
       final qnaList = parseQnA(generatedText);
 
+      // Save to history
+      Provider.of<QnAProvider>(context)
+          .addHistory(qnaList, text);
+
       // Navigate to Result Screen
       Navigator.push(
         context,
@@ -69,8 +75,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to generate content")),
       );
-    } finally {
-      setState(() => _isLoading = false);
     }
   }
 
