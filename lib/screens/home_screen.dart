@@ -61,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final qnaList = parseQnA(generatedText);
 
       // Save to history
-      Provider.of<QnAProvider>(context)
+      Provider.of<QnAProvider>(context,listen: false)
           .addHistory(qnaList, text);
 
       // Navigate to Result Screen
@@ -71,6 +71,8 @@ class _HomeScreenState extends State<HomeScreen> {
           builder: (_) => ResultScreen(qnaList: qnaList),
         ),
       );
+      setState(() => _isLoading = false);
+
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text("Failed to generate content")),

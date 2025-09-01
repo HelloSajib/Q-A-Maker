@@ -48,7 +48,7 @@ class HistoryScreen extends StatelessWidget {
               subtitle: Text(date),
               trailing: IconButton(
                   onPressed: (){
-                    //Provider.of<QnAProvider>(context).removeHistory(index);
+                    Provider.of<QnAProvider>(context, listen: false).removeHistory(index);
                   },
                   icon: Icon(Icons.delete_forever, color: Colors.red,)
               ),
